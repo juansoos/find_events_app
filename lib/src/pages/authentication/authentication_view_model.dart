@@ -20,6 +20,6 @@ class AuthenticationViewModel {
     print('Email: $email');
     print('Password: $password');
 
-    //_router.pushTo(CityPickerRoute());
+    _router.pushTo(CityPickerRoute());
   }
 }
