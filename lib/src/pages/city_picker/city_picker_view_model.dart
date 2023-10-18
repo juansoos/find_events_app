@@ -15,5 +15,7 @@ class CityPickerViewModel {
 
   void onCitySelected(int position) {
     print(cities[position]);
+
+    _router.replaceTo(HomeRoute());
   }
 }
