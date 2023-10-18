@@ -28,7 +28,7 @@ class CustomTheme {
         minimumSize: MaterialStateProperty.all(const Size(100, 40)),
         textStyle: MaterialStateProperty.all(_textTheme.titleSmall),
         backgroundColor: MaterialStateProperty.resolveWith<Color>(
-              (Set<MaterialState> states) {
+          (Set<MaterialState> states) {
             if (states.contains(MaterialState.disabled)) {
               return CustomColors.brown.withOpacity(0.5);
             }
@@ -74,9 +74,9 @@ class CustomTheme {
       showUnselectedLabels: true,
       showSelectedLabels: true,
       selectedLabelStyle:
-      CustomTypography.body2.copyWith(color: CustomColors.brown),
+          CustomTypography.body2.copyWith(color: CustomColors.brown),
       unselectedLabelStyle:
-      CustomTypography.body2.copyWith(color: CustomColors.lightBrown),
+          CustomTypography.body2.copyWith(color: CustomColors.lightBrown),
     );
   }
 
@@ -87,6 +87,21 @@ class CustomTheme {
         titleTextStyle: CustomTypography.title1.copyWith(
           color: CustomColors.background,
         ));
+  }
+
+  static InputDecorationTheme get _inputDecorationTheme {
+    return const InputDecorationTheme(
+      border: OutlineInputBorder(),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: CustomColors.onPrimary),
+      ),
+      enabledBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: CustomColors.secondary),
+      ),
+      errorBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: CustomColors.error),
+      ),
+    );
   }
 
   static ThemeData material = ThemeData.from(
@@ -110,6 +125,6 @@ class CustomTheme {
     elevatedButtonTheme: _elevatedButtonTheme,
     navigationBarTheme: _navigatorBarTheme,
     bottomNavigationBarTheme: _bottomNavigatorBarTheme,
+    inputDecorationTheme: _inputDecorationTheme,
   );
-
 }
