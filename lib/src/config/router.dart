@@ -1,6 +1,7 @@
 import 'package:find_events/src/config/configuration.dart';
 import 'package:find_events/src/pages/authentication/authentication_page.dart';
 import 'package:find_events/src/pages/city_picker/city_picker_page.dart';
+import 'package:find_events/src/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class Router {
@@ -68,4 +69,15 @@ class CityPickerRoute extends CustomRoute {
 
   @override
   String get name => 'CITY_PICKER';
+}
+
+class HomeRoute extends CustomRoute {
+  @override
+  Map<String, dynamic> get arguments => const {};
+
+  @override
+  String get name => 'HOME';
+
+  @override
+  Widget get page => const HomePage();
 }
