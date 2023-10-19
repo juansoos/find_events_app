@@ -9,6 +9,7 @@ abstract class RouterModule {
     return Router(
       navigatorKey,
       RepositoryModule.userRepository(),
+      RepositoryModule.cityRepository(),
     );
   }
 }
