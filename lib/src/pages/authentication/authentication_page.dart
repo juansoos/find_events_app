@@ -1,5 +1,4 @@
 import 'package:find_events/src/common/di/modules_config.dart';
-import 'package:find_events/src/common/di/repository_module.dart';
 import 'package:find_events/src/config/typography.dart';
 import 'package:find_events/src/pages/authentication/authentication_view_model.dart';
 import 'package:flutter/material.dart';

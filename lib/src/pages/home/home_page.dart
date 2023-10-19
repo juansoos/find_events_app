@@ -1,4 +1,5 @@
 import 'package:find_events/src/pages/event/event_page.dart';
+import 'package:find_events/src/pages/settings/setting_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -14,17 +15,9 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Find Events"),
-        elevation: 2,
-      ),
       body: [
         const EventPage(),
-        Container(
-          color: Colors.white,
-          alignment: Alignment.center,
-          child: const Text('Settings'),
-        ),
+        const SettingsPage(),
       ][currentPageIndex],
       bottomNavigationBar: NavigationBar(
         selectedIndex: currentPageIndex,
@@ -37,7 +30,7 @@ class _HomePageState extends State<HomePage> {
           NavigationDestination(
             selectedIcon: Icon(Icons.home),
             icon: Icon(Icons.home_outlined),
-            label: "Home",
+            label: "Events",
           ),
           NavigationDestination(
             selectedIcon: Icon(Icons.settings),
