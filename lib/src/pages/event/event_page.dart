@@ -1,5 +1,5 @@
 import 'package:find_events/src/api/model/event.dart';
-import 'package:find_events/src/common/di/repository_module.dart';
+import 'package:find_events/src/common/di/modules_config.dart';
 import 'package:find_events/src/config/configuration.dart';
 import 'package:find_events/src/pages/event/event_view_model.dart';
 import 'package:flutter/material.dart';
@@ -37,24 +37,30 @@ class _EventPageState extends State<EventPage> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: ChangeNotifierProvider.value(
-        value: _viewModel,
-        child: Consumer<EventViewModel>(
-          builder: (_, viewModel, __) {
-            if (viewModel.isLoadingVisible) {
-              return const Center(child: CircularProgressIndicator());
-            }
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Events"),
+        elevation: 2,
+      ),
+      body: SafeArea(
+        child: ChangeNotifierProvider.value(
+          value: _viewModel,
+          child: Consumer<EventViewModel>(
+            builder: (_, viewModel, __) {
+              if (viewModel.isLoadingVisible) {
+                return const Center(child: CircularProgressIndicator());
+              }
 
-            return ListView.builder(
-              itemCount: viewModel.events.length,
-              itemBuilder: (_, index) {
-                final event = viewModel.events[index];
+              return ListView.builder(
+                itemCount: viewModel.events.length,
+                itemBuilder: (_, index) {
+                  final event = viewModel.events[index];
 
-                return _EventItem(event: event);
-              },
-            );
-          },
+                  return _EventItem(event: event);
+                },
+              );
+            },
+          ),
         ),
       ),
     );
