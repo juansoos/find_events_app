@@ -1,12 +1,15 @@
 import 'dart:async';
 
 import 'package:find_events/src/common/di/modules_config.dart';
+import 'package:find_events/src/common/storage.dart';
 import 'package:find_events/src/config/configuration.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runZonedGuarded(() {
+  runZonedGuarded(() async {
     WidgetsFlutterBinding.ensureInitialized();
+
+    await Storage.init();
 
     final navigatorKey = FlutterModule.navigatorKey();
     runApp(MyApp(navigatorKey: navigatorKey));

@@ -1,3 +1,4 @@
+import 'package:find_events/src/api/repository/user/user_repository.dart';
 import 'package:find_events/src/config/configuration.dart';
 import 'package:find_events/src/pages/authentication/authentication_page.dart';
 import 'package:find_events/src/pages/city_picker/city_picker_page.dart';
@@ -5,9 +6,10 @@ import 'package:find_events/src/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
 class Router {
-  Router(this._navigatorKey);
+  Router(this._navigatorKey, this._userRepository);
 
   final GlobalKey<NavigatorState> _navigatorKey;
+  final UserRepository _userRepository;
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     final route = mapToRoute(settings)!;
@@ -27,7 +29,11 @@ class Router {
   }
 
   CustomRoute get initialRoute {
-    return AuthenticationRoute();
+    if (_userRepository.userExists) {
+      return CityPickerRoute();
+    } else {
+      return AuthenticationRoute();
+    }
   }
 
   Future pushTo(CustomRoute route, {bool shouldShowAsDialog = false}) {
