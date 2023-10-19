@@ -1,20 +1,33 @@
+import 'package:find_events/src/api/model/city.dart';
+import 'package:find_events/src/api/repository/city/city_repository.dart';
 import 'package:find_events/src/config/configuration.dart';
+import 'package:flutter/foundation.dart';
 
-class CityPickerViewModel {
+class CityPickerViewModel extends ChangeNotifier {
+  CityPickerViewModel(
+    this._router,
+    this._cityRepository,
+  );
+
   final Router _router;
+  final CityRepository _cityRepository;
 
-  CityPickerViewModel(this._router);
+  List<City> cities = [];
+  bool isLoadingVisible = true;
 
-  final List<String> cities = [
-    'New York',
-    'London',
-    'Paris',
-    'Tokyo',
-    'Sydney'
-  ];
+  Future<void> onInit() async {
+    final response = await _cityRepository.getCities();
 
-  void onCitySelected(int position) {
-    print(cities[position]);
+    cities = response;
+    isLoadingVisible = false;
+
+    notifyListeners();
+  }
+
+  Future<void> onCitySelected(int position) async {
+    final citySelected = cities[position];
+
+    await _cityRepository.saveCity(citySelected);
 
     _router.replaceTo(HomeRoute());
   }

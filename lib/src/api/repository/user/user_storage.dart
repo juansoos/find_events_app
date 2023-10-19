@@ -9,9 +9,7 @@ class UserStorage {
   final Storage _storage;
 
   Future<void> saveUser(User user) async {
-    await Future.wait([
-      _storage.setString(_keyUserEmail, user.email),
-    ]);
+    await _storage.setString(_keyUserEmail, user.email);
   }
 
   String? get userEmail => _storage.getString(_keyUserEmail);
