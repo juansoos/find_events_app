@@ -17,6 +17,7 @@ class _EventPageState extends State<EventPage> {
   final EventViewModel _viewModel = EventViewModel(
     RepositoryModule.eventRepository(),
     RepositoryModule.cityRepository(),
+    RouterModule.router(),
   );
 
   @override
@@ -41,6 +42,26 @@ class _EventPageState extends State<EventPage> {
       appBar: AppBar(
         title: const Text("Events"),
         elevation: 2,
+        actions: [
+          TextButton(
+            onPressed: _viewModel.onChangeCityClicked,
+            child: Row(
+              children: [
+                const Icon(
+                  Icons.location_on_outlined,
+                  size: 14,
+                  color: CustomColors.background,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  _viewModel.citySelected!,
+                  style: CustomTypography.caption1
+                      .copyWith(color: CustomColors.background),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
       body: SafeArea(
         child: ChangeNotifierProvider.value(
