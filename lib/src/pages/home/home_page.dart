@@ -1,3 +1,4 @@
+import 'package:find_events/src/pages/event/event_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,11 +19,7 @@ class _HomePageState extends State<HomePage> {
         elevation: 2,
       ),
       body: [
-        Container(
-          color: Colors.white,
-          alignment: Alignment.center,
-          child: const Text('Home'),
-        ),
+        const EventPage(),
         Container(
           color: Colors.white,
           alignment: Alignment.center,
