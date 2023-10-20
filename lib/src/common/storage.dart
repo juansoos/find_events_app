@@ -1,3 +1,4 @@
+import 'package:flutter_fimber/flutter_fimber.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Storage {
@@ -19,7 +20,7 @@ class Storage {
 
   static Future<void> init() async {
     final sharedPreferences = await SharedPreferences.getInstance();
-    print('Shared preferences initialized');
+    Fimber.d('Shared preferences initialized');
     _instance = Storage._(sharedPreferences);
   }
 

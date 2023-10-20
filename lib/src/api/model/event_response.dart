@@ -1,4 +1,5 @@
 import 'package:find_events/src/api/model/event.dart';
+import 'package:flutter_fimber/flutter_fimber.dart';
 
 class EventResponse {
   EventResponse({this.events});
@@ -14,8 +15,7 @@ class EventResponse {
         });
       }
     } catch (e, stack) {
-      print(e);
-      print(stack);
+      Fimber.d('Error', ex: e, stacktrace: stack);
     }
   }
 }
