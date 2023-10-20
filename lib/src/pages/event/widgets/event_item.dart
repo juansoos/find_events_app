@@ -19,10 +19,13 @@ class EventItem extends StatelessWidget {
               topRight: Radius.circular(10),
               topLeft: Radius.circular(10),
             ),
-            child: Image.network(
-              event.performers.first.image!,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.fitWidth,
+            child: Hero(
+              tag: 'event_${event.id}',
+              child: Image.network(
+                event.performers.first.image!,
+                width: MediaQuery.of(context).size.width,
+                fit: BoxFit.fitWidth,
+              ),
             ),
           ),
           const SizedBox(height: 10),
