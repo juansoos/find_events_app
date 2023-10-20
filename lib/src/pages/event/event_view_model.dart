@@ -18,7 +18,11 @@ class EventViewModel extends ChangeNotifier {
   final CityRepository _cityRepository;
   final Router _router;
 
-  var isLoadingVisible = true;
+  var isInitialLoadingVisible = true;
+  var isMoreLoadingVisible = false;
+  var hasMoreEvents = true;
+  var page = 1;
+
   var events = <Event>[];
   String? citySelected;
 
@@ -27,12 +31,42 @@ class EventViewModel extends ChangeNotifier {
       final response = await _eventRepository.getEventsByCity(citySelected!);
 
       events = response ?? [];
-      isLoadingVisible = false;
+      isInitialLoadingVisible = false;
 
       notifyListeners();
     } catch (e) {
-      isLoadingVisible = false;
+      isInitialLoadingVisible = false;
       events = [];
+
+      notifyListeners();
+    }
+  }
+
+  Future<void> getMoreEvents() async {
+    try {
+      if (hasMoreEvents) {
+        isMoreLoadingVisible = true;
+        notifyListeners();
+
+        final nextPage = page + 1;
+
+        final response = await _eventRepository.getEventsByCity(
+          citySelected!,
+          page: nextPage,
+        );
+
+        final newEvents = List.of(events);
+        newEvents.addAll(response ?? []);
+
+        events = newEvents;
+        isMoreLoadingVisible = false;
+        hasMoreEvents = nextPage <= 3;
+        page = nextPage;
+
+        notifyListeners();
+      }
+    } catch (e) {
+      isMoreLoadingVisible = false;
 
       notifyListeners();
     }
