@@ -9,11 +9,11 @@ class EventRepository {
 
   final HttpClient _service;
 
-  Future<List<Event>?> getEventsByCity(String city) async {
+  Future<List<Event>?> getEventsByCity(String city, {int? page = 1}) async {
     try {
       final cityRaw = city.replaceAll(' ', '%20');
       final path =
-          '/events?venue.city=$cityRaw&client_id=Mzc2NDM1ODF8MTY5NzczMDk5NS4xNTY1Nzg4';
+          '/events?venue.city=$cityRaw&client_id=Mzc2NDM1ODF8MTY5NzczMDk5NS4xNTY1Nzg4&per_page=10&page=$page';
 
       final response = await _service.get(path);
 

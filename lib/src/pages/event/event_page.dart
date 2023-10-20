@@ -1,6 +1,7 @@
 import 'package:find_events/src/common/di/modules_config.dart';
 import 'package:find_events/src/pages/event/event_view_model.dart';
 import 'package:find_events/src/pages/event/widgets/event_current_city.dart';
+import 'package:find_events/src/pages/event/widgets/event_footer.dart';
 import 'package:find_events/src/pages/event/widgets/event_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -19,6 +20,7 @@ class _EventPageState extends State<EventPage> {
     RepositoryModule.cityRepository(),
     RouterModule.router(),
   );
+  final ScrollController _scrollController = ScrollController();
 
   @override
   void initState() {
@@ -27,6 +29,8 @@ class _EventPageState extends State<EventPage> {
     SchedulerBinding.instance.addPostFrameCallback((_) {
       _viewModel.onInit();
     });
+
+    _scrollController.addListener(onEndReached);
   }
 
   @override
@@ -34,6 +38,8 @@ class _EventPageState extends State<EventPage> {
     super.dispose();
 
     _viewModel.dispose();
+    _scrollController.removeListener(onEndReached);
+    _scrollController.dispose();
   }
 
   @override
@@ -54,19 +60,28 @@ class _EventPageState extends State<EventPage> {
           value: _viewModel,
           child: Consumer<EventViewModel>(
             builder: (_, viewModel, __) {
-              if (viewModel.isLoadingVisible) {
+              if (viewModel.isInitialLoadingVisible) {
                 return const Center(child: CircularProgressIndicator());
               }
 
               return ListView.builder(
-                itemCount: viewModel.events.length,
+                controller: _scrollController,
+                // Add +1 to be able to display the footer
+                itemCount: viewModel.events.length + 1,
                 itemBuilder: (_, index) {
-                  final event = viewModel.events[index];
+                  if (index < viewModel.events.length) {
+                    final event = viewModel.events[index];
 
-                  return InkWell(
-                    onTap: () => viewModel.onEventClicked(event),
-                    child: EventItem(key: Key('$index'), event: event),
-                  );
+                    return InkWell(
+                      onTap: () => viewModel.onEventClicked(event),
+                      child: EventItem(key: Key('$index'), event: event),
+                    );
+                  } else {
+                    return EventFooter(
+                      isLoadingVisible: viewModel.isMoreLoadingVisible,
+                      hasMoreElements: viewModel.hasMoreEvents,
+                    );
+                  }
                 },
               );
             },
@@ -74,5 +89,12 @@ class _EventPageState extends State<EventPage> {
         ),
       ),
     );
+  }
+
+  void onEndReached() {
+    if (_scrollController.position.pixels ==
+        _scrollController.position.maxScrollExtent) {
+      _viewModel.getMoreEvents();
+    }
   }
 }
