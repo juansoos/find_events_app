@@ -7,6 +7,7 @@ import 'package:find_events/src/pages/city_picker/city_picker_page.dart';
 import 'package:find_events/src/pages/event_detail/event_detail_page.dart';
 import 'package:find_events/src/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_fimber/flutter_fimber.dart';
 
 class Router {
   Router(this._navigatorKey, this._userRepository, this._cityRepository);
@@ -43,14 +44,14 @@ class Router {
   }
 
   Future pushTo(CustomRoute route, {bool shouldShowAsDialog = false}) {
-    print('Push to: $route');
+    Fimber.d('Push to: $route');
 
     final pageRoute = route.asRoute(shouldShowAsDialog: shouldShowAsDialog);
     return _navigatorKey.currentState!.push(pageRoute);
   }
 
   Future replaceTo(CustomRoute route) {
-    print('Replace to: $route');
+    Fimber.d('Replace to: $route');
 
     return _navigatorKey.currentState!
         .pushAndRemoveUntil(route.asRoute(), (route) => false);
