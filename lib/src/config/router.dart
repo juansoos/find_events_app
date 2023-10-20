@@ -1,9 +1,10 @@
+import 'package:find_events/src/api/model/event.dart';
 import 'package:find_events/src/api/repository/city/city_repository.dart';
 import 'package:find_events/src/api/repository/user/user_repository.dart';
 import 'package:find_events/src/config/configuration.dart';
 import 'package:find_events/src/pages/authentication/authentication_page.dart';
 import 'package:find_events/src/pages/city_picker/city_picker_page.dart';
-import 'package:find_events/src/pages/event/event_page.dart';
+import 'package:find_events/src/pages/event_detail/event_detail_page.dart';
 import 'package:find_events/src/pages/home/home_page.dart';
 import 'package:flutter/material.dart';
 
@@ -93,13 +94,17 @@ class HomeRoute extends CustomRoute {
   Widget get page => const HomePage();
 }
 
-class EventRoute extends CustomRoute {
-  @override
-  Map<String, dynamic> get arguments => const {};
+class EventDetailRoute extends CustomRoute {
+  EventDetailRoute(this.event);
+
+  final Event event;
 
   @override
-  String get name => 'EVENT';
+  Map<String, dynamic> get arguments => {'event': event.toString()};
 
   @override
-  Widget get page => const EventPage();
+  String get name => 'EVENT_DETAIL';
+
+  @override
+  Widget get page => EventDetailPage(event: event);
 }

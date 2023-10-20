@@ -1,7 +1,7 @@
-import 'package:find_events/src/api/model/city.dart';
 import 'package:find_events/src/common/di/modules_config.dart';
 import 'package:find_events/src/config/typography.dart';
 import 'package:find_events/src/pages/city_picker/city_picker_view_model.dart';
+import 'package:find_events/src/pages/city_picker/widgets/city_picker_item.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:provider/provider.dart';
@@ -45,10 +45,7 @@ class _CityPickerPageState extends State<CityPickerPage> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Text(
-                "Select a city",
-                style: CustomTypography.headline2,
-              ),
+              const Text("Select a city", style: CustomTypography.headline2),
               const SizedBox(height: 16),
               const Text(
                 "To continue, select the city for which you wish to obtain event information.",
@@ -72,14 +69,14 @@ class _CityPickerPageState extends State<CityPickerPage> {
                         itemBuilder: (BuildContext context, int index) {
                           final city = viewModel.cities[index];
 
-                          return _CityItem(
+                          return CityPickerItem(
                             key: Key('$index'),
                             item: city,
                             onTap: () => viewModel.onCitySelected(index),
                           );
                         },
                         separatorBuilder: (context, index) {
-                          return const SizedBox(height: 16);
+                          return const SizedBox(height: 12);
                         },
                       );
                     },
@@ -90,25 +87,6 @@ class _CityPickerPageState extends State<CityPickerPage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _CityItem extends StatelessWidget {
-  const _CityItem({super.key, required this.item, this.onTap});
-
-  final City item;
-  final void Function()? onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListTile(
-      leading: ClipRRect(
-        borderRadius: BorderRadius.circular(10),
-        child: Image.network(item.thumbnail),
-      ),
-      title: Text(item.name),
-      onTap: onTap,
     );
   }
 }
