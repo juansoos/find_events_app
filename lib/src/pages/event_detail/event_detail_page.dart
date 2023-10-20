@@ -28,10 +28,13 @@ class _EventDetailPageState extends State<EventDetailPage> {
       ),
       body: Column(
         children: [
-          Image.network(
-            widget.event.performers.first.image!,
-            width: width,
-            fit: BoxFit.fitWidth,
+          Hero(
+            tag: 'event_${widget.event.id}',
+            child: Image.network(
+              widget.event.performers.first.image!,
+              width: width,
+              fit: BoxFit.fitWidth,
+            ),
           ),
           Padding(
             padding: const EdgeInsets.all(16),
