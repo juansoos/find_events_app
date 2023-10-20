@@ -38,11 +38,6 @@ final List<City> cities = [
         "https://media.istockphoto.com/id/1370762154/video/miami-cityscape.jpg?s=640x640&k=20&c=8sizBNGozF_AbgMHa0pp25cWy-oGFsJF0wiNMNbS8H0=",
   ),
   City(
-    name: "Houston",
-    thumbnail:
-        "https://media.gettyimages.com/id/1398355970/video/drone-shot-of-downtown-houston-texas.jpg?s=640x640&k=20&c=p_smR7DTDrklIcLupqcYcJ38ozJ7nlJSW2Mtit5mcUc=",
-  ),
-  City(
     name: "Atlanta",
     thumbnail:
         "https://media.istockphoto.com/id/1365937996/es/v%C3%ADdeo/vista-a%C3%A9rea-a-trav%C3%A9s-de-edificios-residenciales-en-sweet-auburn-hacia-el-centro-de-atlanta.jpg?s=640x640&k=20&c=syvOriIPhgCTHTDINTg_lMjb-Dx4HEbe1l_dnJGdbT4=",
