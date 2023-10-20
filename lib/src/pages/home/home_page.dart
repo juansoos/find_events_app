@@ -1,3 +1,4 @@
+import 'package:find_events/generated/l10n.dart';
 import 'package:find_events/src/pages/event/event_page.dart';
 import 'package:find_events/src/pages/settings/setting_page.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +15,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n();
+
     return Scaffold(
       body: [
         const EventPage(),
@@ -26,16 +29,16 @@ class _HomePageState extends State<HomePage> {
             currentPageIndex = index;
           });
         },
-        destinations: const [
+        destinations: [
           NavigationDestination(
-            selectedIcon: Icon(Icons.home),
-            icon: Icon(Icons.home_outlined),
-            label: "Events",
+            selectedIcon: const Icon(Icons.home),
+            icon: const Icon(Icons.home_outlined),
+            label: i18n.events,
           ),
           NavigationDestination(
-            selectedIcon: Icon(Icons.settings),
-            icon: Icon(Icons.settings_outlined),
-            label: "Settings",
+            selectedIcon: const Icon(Icons.settings),
+            icon: const Icon(Icons.settings_outlined),
+            label: i18n.settings,
           )
         ],
       ),

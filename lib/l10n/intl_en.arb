@@ -1,0 +1,18 @@
+{
+  "@@locale": "en",
+  "enterEmail": "Enter valid email id as abc@gmail.com",
+  "enterPassword": "Enter secure password",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "weAreValidatingInformation": "We are validating your information, give us a moment.",
+  "selectCity": "Select a city",
+  "selectCityToContinue": "To continue, select the city for which you wish to obtain event information.",
+  "events": "Events",
+  "noMoreEvents": "No more events",
+  "description": "Description",
+  "buyTicket": "Buy ticket",
+  "settings": "Settings",
+  "changeCity": "Change city",
+  "logout": "Logout"
+}

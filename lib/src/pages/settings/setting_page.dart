@@ -1,3 +1,4 @@
+import 'package:find_events/generated/l10n.dart';
 import 'package:find_events/src/common/di/modules_config.dart';
 import 'package:find_events/src/pages/settings/settings_view_model.dart';
 import 'package:flutter/material.dart';
@@ -24,9 +25,11 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings'),
+        title: Text(i18n.settings),
         elevation: 2,
       ),
       body: SafeArea(
@@ -39,12 +42,12 @@ class _SettingsPageState extends State<SettingsPage> {
               children: [
                 ElevatedButton(
                   onPressed: _viewModel.onChangeCityClicked,
-                  child: const Text('Change city'),
+                  child: Text(i18n.changeCity),
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: _viewModel.onLogoutClicked,
-                  child: const Text('Logout'),
+                  child: Text(i18n.logout),
                 )
               ],
             ),

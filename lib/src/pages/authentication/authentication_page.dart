@@ -1,3 +1,4 @@
+import 'package:find_events/generated/l10n.dart';
 import 'package:find_events/src/common/di/modules_config.dart';
 import 'package:find_events/src/pages/authentication/authentication_view_model.dart';
 import 'package:find_events/src/pages/authentication/widgets/loader.dart';
@@ -26,6 +27,8 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n();
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -44,24 +47,24 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
                     TextField(
                       onChanged: _viewModel.onEmailChanged,
                       keyboardType: TextInputType.emailAddress,
-                      decoration: const InputDecoration(
-                        labelText: 'Email',
-                        hintText: 'Enter valid email id as abc@gmail.com',
+                      decoration: InputDecoration(
+                        labelText: i18n.email,
+                        hintText: i18n.enterEmail,
                       ),
                     ),
                     const SizedBox(height: 16),
                     TextField(
                       onChanged: _viewModel.onPasswordChanged,
                       obscureText: true,
-                      decoration: const InputDecoration(
-                        labelText: 'Password',
-                        hintText: 'Enter secure password',
+                      decoration: InputDecoration(
+                        labelText: i18n.password,
+                        hintText: i18n.enterPassword,
                       ),
                     ),
                     const SizedBox(height: 32),
                     ElevatedButton(
                       onPressed: _viewModel.onSubmitClicked,
-                      child: const Text('Login'),
+                      child: Text(i18n.login),
                     ),
                   ],
                 );

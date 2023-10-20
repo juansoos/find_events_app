@@ -1,3 +1,4 @@
+import 'package:find_events/generated/l10n.dart';
 import 'package:find_events/src/common/di/modules_config.dart';
 import 'package:find_events/src/pages/event/event_view_model.dart';
 import 'package:find_events/src/pages/event/widgets/event_current_city.dart';
@@ -44,9 +45,11 @@ class _EventPageState extends State<EventPage> {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n();
+
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Events"),
+        title: Text(i18n.events),
         elevation: 2,
         actions: [
           EventCurrentCity(
