@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:find_events/generated/l10n.dart';
 import 'package:find_events/src/common/di/modules_config.dart';
 import 'package:find_events/src/common/storage.dart';
 import 'package:find_events/src/config/configuration.dart';
@@ -32,6 +33,10 @@ class MyApp extends StatelessWidget {
       theme: CustomTheme.material,
       themeMode: ThemeMode.light,
       onGenerateRoute: RouterModule.router().generateRoute,
+      localizationsDelegates: const [
+        I18n.delegate,
+      ],
+      supportedLocales: I18n.delegate.supportedLocales,
     );
   }
 }

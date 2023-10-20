@@ -1,3 +1,4 @@
+import 'package:find_events/generated/l10n.dart';
 import 'package:find_events/src/config/configuration.dart';
 import 'package:flutter/material.dart';
 
@@ -6,17 +7,19 @@ class Loader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Column(
+    final i18n = I18n();
+
+    return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         Text(
-          "We are validating your information, give us a moment.",
+          i18n.weAreValidatingInformation,
           textAlign: TextAlign.center,
           style: CustomTypography.headline3,
         ),
-        SizedBox(height: 40),
-        CircularProgressIndicator()
+        const SizedBox(height: 40),
+        const CircularProgressIndicator()
       ],
     );
   }

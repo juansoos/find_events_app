@@ -1,3 +1,4 @@
+import 'package:find_events/generated/l10n.dart';
 import 'package:find_events/src/api/model/event.dart';
 import 'package:find_events/src/config/configuration.dart';
 import 'package:find_events/src/pages/event_detail/event_detail_view_model.dart';
@@ -19,6 +20,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final i18n = I18n();
     final width = MediaQuery.of(context).size.width;
 
     return Scaffold(
@@ -62,7 +64,7 @@ class _EventDetailPageState extends State<EventDetailPage> {
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     minimumSize: Size(width, 48),
                   ),
-                  child: const Text('Buy ticket'),
+                  child: Text(i18n.buyTicket),
                 ),
                 EventDetailDescription(description: widget.event.description)
               ],
