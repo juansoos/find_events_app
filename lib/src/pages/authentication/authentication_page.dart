@@ -1,6 +1,6 @@
 import 'package:find_events/src/common/di/modules_config.dart';
-import 'package:find_events/src/config/typography.dart';
 import 'package:find_events/src/pages/authentication/authentication_view_model.dart';
+import 'package:find_events/src/pages/authentication/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -35,7 +35,7 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
             child: Consumer<AuthenticationViewModel>(
               builder: (_, viewModel, __) {
                 if (viewModel.isLoadingVisible) {
-                  return const _Loader();
+                  return const Loader();
                 }
 
                 return Column(
@@ -70,27 +70,6 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
           ),
         ),
       ),
-    );
-  }
-}
-
-class _Loader extends StatelessWidget {
-  const _Loader();
-
-  @override
-  Widget build(BuildContext context) {
-    return const Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: [
-        Text(
-          "We are validating your information, give us a moment.",
-          textAlign: TextAlign.center,
-          style: CustomTypography.headline3,
-        ),
-        SizedBox(height: 40),
-        CircularProgressIndicator()
-      ],
     );
   }
 }

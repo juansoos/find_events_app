@@ -41,4 +41,8 @@ class EventViewModel extends ChangeNotifier {
   Future<void> onChangeCityClicked() async {
     _router.pushTo(CityPickerRoute());
   }
+
+  void onEventClicked(Event event) {
+    _router.pushTo(EventDetailRoute(event));
+  }
 }
